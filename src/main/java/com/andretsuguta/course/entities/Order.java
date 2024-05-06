@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.andretsuguta.course.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -94,12 +95,21 @@ public class Order implements Serializable{
 		return items;
 	}
 	
+	@JsonIgnore
 	public Payment getPayment() {
 		return payment;
 	}
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	
+	public Double getTotal() {
+		Double sum = 0.0;
+		for (OrderItem x : items) {
+			sum += x.getSubTotal();
+		}
+		return sum;
 	}
 
 	@Override
