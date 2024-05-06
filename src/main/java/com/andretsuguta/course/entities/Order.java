@@ -37,7 +37,7 @@ public class Order implements Serializable{
 	private User client;
 	
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> itens = new HashSet<>();
+	private Set<OrderItem> items = new HashSet<>();
 	
 	public Order(){
 	}
@@ -86,7 +86,7 @@ public class Order implements Serializable{
 	}
 
 	public Set<OrderItem> getItens(){
-		return itens;
+		return items;
 	}
 	
 	@Override
